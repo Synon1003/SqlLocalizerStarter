@@ -1,0 +1,44 @@
+﻿@page "/"
+@using Localization.SqlLocalizer.DbStringLocalizer
+@using Microsoft.Extensions.Localization
+@using Microsoft.EntityFrameworkCore
+@inject LocalizationModelContext Db
+@inject IStringLocalizer<Home> L
+
+<PageTitle>Home</PageTitle>
+
+<h1>@L["Greeting"]</h1>
+<p>Aktuális nyelv: @System.Globalization.CultureInfo.CurrentUICulture.Name</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Key</th>
+            <th>Text</th>
+            <th>LocalizationCulture</th>
+            <th>ResourceKey</th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach(var record in records)
+            {
+                <tr>
+                    <td>@record.Id</td>
+                    <td>@record.Key</td>
+                    <td>@record.Text</td>
+                    <td>@record.LocalizationCulture</td>
+                    <td>@record.ResourceKey</td>
+                </tr>
+            }
+    </tbody>
+</table>
+
+@code {
+    List<LocalizationRecord> records = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        records = await Db.LocalizationRecords.ToListAsync();
+    }
+}

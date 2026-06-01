@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="SqlLocalizerStarter.AppHost/SqlLocalizerStarter.AppHost.csproj" />
+  <Project Path="SqlLocalizerStarter.ServiceDefaults/SqlLocalizerStarter.ServiceDefaults.csproj" />
+  <Project Path="SqlLocalizerStarter.Web/SqlLocalizerStarter.Web.csproj" />
+</Solution>
